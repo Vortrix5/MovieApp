@@ -55,7 +55,6 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
   },
   inputInput: {
-    textAlign: "center",
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -79,6 +78,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function NavBar(props) {
+  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
