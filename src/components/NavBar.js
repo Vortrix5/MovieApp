@@ -78,8 +78,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function NavBar(){
-
+export default function NavBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -160,8 +159,8 @@ export default function NavBar(){
   );
 
 
-    return (
-      <div className={classes.grow}>
+  return (
+    <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -178,6 +177,10 @@ export default function NavBar(){
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'Search' }}
+              onChange={(event) => {
+                props.searchUpdate(event.target.value)
+              }
+              }
             />
           </div>
           <div className={classes.grow} />
@@ -186,5 +189,5 @@ export default function NavBar(){
       {renderMobileMenu}
       {renderMenu}
     </div>
-    );
+  );
 }
