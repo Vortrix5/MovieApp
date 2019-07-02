@@ -1,76 +1,54 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import "./style.css";
+import MovieButtons from "./MovieButtons";
 
-const useStyles = makeStyles(theme => ({
-    card: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        backgroundColor: red[500],
-    },
-}));
-
-export default function MovieCard(props) {
-
-    const classes = useStyles();
+class MovieCard extends React.Component {
+    onDelete(){
+        console.log("works");
+    }
+     render(){
+        let index = this.props.index;
+        let imgsrc = "url(" + this.props.img + ")"
+        let name = this.props.title.substring(0, 20)
+        let date = this.props.date
+        let d = new Date(date)
+        let releaseDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + this.props.year;
 
     return (
-        <div style={{ display: "inline-block", marginLeft: "42px",  marginRight: "42px",  marginTop: "16px",  marginBottom: "16px" }}>
-            <Card className={classes.card}>
-                <CardHeader
-                    
-                    action={
-                        <IconButton aria-label="Settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title={props.title}
-                    subheader={props.year}
-                />
-                <CardMedia
-                    className={classes.media}
-                    image={props.img}
-                    title="Paella dish"
-                />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {props.desc.substring(0, 158)+"..."}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="Share">
-                        <ShareIcon />
-                    </IconButton>
-                </CardActions>
-            </Card>
-        </div>
-    )
-} 
+        <>
+            
+            <div className="container" style={{ display: "inline-block" }}>
+
+
+                <div className="movie-card" >
+                    <div className="movie-header manOfSteel" style={{ background: imgsrc }}>
+                        <div className="header-icon-container"  >
+                            <a href="..">
+                                <i className="material-icons header-icon">.</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div className="movie-content">
+                        <div className="movie-content-header">
+                            <a href={this.props.trailer}>
+                                <h3 class="movie-title">{name}</h3>
+                            </a>
+                            <div></div>
+                        </div>
+                        <div className="movie-info">
+                            <div className="info-section" style={{ float: "left" }}>
+                                <label>Release Date</label>
+                                <span>{releaseDate}</span>
+                                <label>{index}</label>
+                            </div>
+                        </div>
+                        <MovieButtons onDelete={this.props.Deleting}/>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+     }
+}
+
+export default MovieCard;

@@ -13,7 +13,8 @@ export default class App extends React.Component {
    state = {
       movies: this.moviesArray,
       loaded: false,
-      nothingFound: this.found
+      nothingFound: this.found,
+      index : ""
    }
 
    constructor(props) {
@@ -45,18 +46,25 @@ export default class App extends React.Component {
    }
 
    searchUpdate(value) {
+      console.log(this.moviesArray)
       this.fetchMovies(value)
+      
    }
 
    componentDidMount() {
       this.fetchMovies("")
    }
+   
+   onDelete(){      
+      console.log(this.state.movies)
+      console.log("works");
+  }
 
    render() {
       return (
          <>
             <NavBar searchUpdate={this.searchUpdate} />
-            {(this.state.loaded) ? ((this.state.nothingFound)?(<Nothing/>):(<MovieCards movies={this.moviesArray} />))
+            {(this.state.loaded) ? ((this.state.nothingFound)?(<Nothing/>):(<MovieCards movies={this.moviesArray} Deleted={this.onDelete}/>))
             :(<Loading/>)}
          </>
       )
