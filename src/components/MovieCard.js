@@ -10,9 +10,11 @@ class MovieCard extends React.Component {
         let index = this.props.index;
         let imgsrc = "url(" + this.props.img + ")"
         let name = this.props.title.substring(0, 20)
-        let date = this.props.date
+        let date = this.props.date;
+        console.log(date);
         let d = new Date(date)
-        let releaseDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + this.props.year;
+         console.log(d);
+        let releaseDate =this.props.year;
 
     return (
         <>
@@ -31,7 +33,7 @@ class MovieCard extends React.Component {
                     <div className="movie-content">
                         <div className="movie-content-header">
                             <a href={this.props.trailer}>
-                                <h3 class="movie-title">{name}</h3>
+                                <h3 className="movie-title">{name}</h3>
                             </a>
                             <div></div>
                         </div>

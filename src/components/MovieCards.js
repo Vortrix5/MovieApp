@@ -22,7 +22,7 @@ export default class MovieCards extends React.Component {
 
             this.props.movies.map((el,i) => {
 
-                return <MovieCard index={i} Deleting={this.props.Deleted} title={el.title} year={el.year} desc={el.synopsis} img={el.images.banner} trailer={el.trailer} date={el.released}/>
+                return <MovieCard index={i} Deleting={this.props.Deleted} title={el.Title} year={el.Year} desc={el.Plot} img={el.Poster} trailer={el.trailer} date={el.Released}/>
 
             })
 

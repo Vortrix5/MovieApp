@@ -28,16 +28,18 @@ export default class App extends React.Component {
          loaded: false,
          nothingFound: false
       })
-      fetch("https://tv-v2.api-fetch.website/movies/1?sort=rating&order=-1&genre=all&keywords=" + keyWord, {
+      fetch("http://www.omdbapi.com/?apikey=691eaf39&s="+keyWord+"&page=1", {
          method: "GET"
       }).then(res => res.json())
          .then(result => {
             (result.length === 0)?(this.found = true):(this.found = false)
-            this.moviesArray = []
-            result.forEach(el => {
-               this.moviesArray.push(el)
-            });
-            this.setState({
+             console.log(result);
+             this.moviesArray = []
+             result.Search.forEach(el => {
+                 this.moviesArray.push(el)
+             });
+             console.log(this.moviesArray);
+             this.setState({
                movies: this.moviesArray,
                loaded: true,
                nothingFound: this.found
@@ -52,7 +54,7 @@ export default class App extends React.Component {
    }
 
    componentDidMount() {
-      this.fetchMovies("")
+      this.fetchMovies("marvel")
    }
    
    onDelete(){      
